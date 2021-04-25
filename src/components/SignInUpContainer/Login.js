@@ -14,7 +14,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 const Login = ({ handleChange }) => {
   const paperStyle = {
     padding: 20,
-    height: '73vh',
+    height: '67vh',
     width: 300,
     margin: '0 auto'
   };
@@ -39,28 +39,32 @@ const Login = ({ handleChange }) => {
           label='Password'
           placeholder='Enter password'
           type='password'
+          // margin-bottom='25px'
           fullWidth
           required
         />
-        <FormControlLabel
+        <br></br>
+        {/* <FormControlLabel
           control={<Checkbox name='checkedB' color='primary' />}
           label='Remember me'
-        />
+        /> */}
         <Button
           type='submit'
           color='primary'
           variant='contained'
+          // padding='25px 25px'
+          // margin='30px 30px'
           style={btnstyle}
           fullWidth
         >
           Sign in
         </Button>
-        <Typography>
+        {/* <Typography>
           <Link href='#'>Forgot password ?</Link>
-        </Typography>
+        </Typography> */}
         <Typography>
-          {' '}
-          Do you have an account ?
+          {/* {' '} */}
+          If you do not have an account?
           <Link href='#' onClick={() => handleChange('event', 1)}>
             Sign Up
           </Link>

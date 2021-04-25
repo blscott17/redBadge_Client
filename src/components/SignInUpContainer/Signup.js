@@ -14,7 +14,9 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { ArrowRightAltRounded } from '@material-ui/icons';
 const Signup = () => {
+  // const paperStyle = { padding: 20, width: 300, margin: '0 auto' };
   const paperStyle = { padding: 20, width: 300, margin: '0 auto' };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: '#1bbd7e' };
@@ -32,27 +34,10 @@ const Signup = () => {
           </Typography>
         </Grid>
         <form>
-          <TextField fullWidth label='Name' placeholder='Enter your name' />
-          <TextField fullWidth label='Email' placeholder='Enter your email' />
-          <FormControl component='fieldset' style={marginTop}>
-            <FormLabel component='legend'>Gender</FormLabel>
-            <RadioGroup
-              aria-label='gender'
-              name='gender'
-              style={{ display: 'initial' }}
-            >
-              <FormControlLabel
-                value='female'
-                control={<Radio />}
-                label='Female'
-              />
-              <FormControlLabel value='male' control={<Radio />} label='Male' />
-            </RadioGroup>
-          </FormControl>
           <TextField
             fullWidth
-            label='Phone Number'
-            placeholder='Enter your phone number'
+            label='User Name'
+            placeholder='Enter your username'
           />
           <TextField
             fullWidth
@@ -61,8 +46,19 @@ const Signup = () => {
           />
           <TextField
             fullWidth
-            label='Confirm Password'
-            placeholder='Confirm your password'
+            label='First Name'
+            placeholder='Enter your First Name'
+          />
+          <TextField
+            fullWidth
+            label='Last Name'
+            placeholder='Enter your Last Name'
+          />
+          <TextField fullWidth label='Email' placeholder='Enter your email' />
+          <TextField
+            fullWidth
+            label='Phone Number'
+            placeholder='Enter your phone number'
           />
           <FormControlLabel
             control={<Checkbox name='checkedA' />}
@@ -78,3 +74,21 @@ const Signup = () => {
 };
 
 export default Signup;
+
+/*
+          <FormControl component='fieldset' style={marginTop}>
+            <FormLabel component='legend'>Gender</FormLabel>
+            <RadioGroup
+              aria-label='gender'
+              name='gender'
+              style={{ display: 'initial' }}
+            >
+              <FormControlLabel
+                value='female'
+                control={<Radio />}
+                label='Female'
+              />
+              <FormControlLabel value='male' control={<Radio />} label='Male' />
+            </RadioGroup>
+          </FormControl>
+*/
