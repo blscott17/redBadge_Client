@@ -1,15 +1,75 @@
-import * as React from 'react';
-import Auth from './components/SignInUpContainer/index'; 
+// import * as React from 'react';
+import React, { Component } from 'react';
+import Auth from './components/Auth/index';
 // import { SignUp } from './components/SignUpForm';
 
-function App() {
-  return (
-    <Auth/> 
-  // <SignUp/>
-  );
+type sessionState = {
+  sessionToken: string | null;
+  isAdmin: string;
+  firstname: string;
 }
 
-export default App;
+export default class App extends Component <{}, sessionState> {
+  constructor (props:sessionState){
+    super(props);
+
+    this.state = {
+      sessionToken: '',
+      isAdmin: 'false',
+      firstname: ''
+    };
+  }
+
+  componentDidUpdate(){
+    console.log('component updated')
+  }
+
+  updateToken = (newToken: string) => {
+    localStorage.setItem('token', newToken);
+    this.setState({sessionToken: newToken});
+    console.log(newToken);
+  }
+
+  clearToken = () => {
+    localStorage.clear();
+    this.setState({sessionToken:''})
+  }
+
+  updateRole= (newRole: string)=> {
+    localStorage.setItem('role', newRole);
+    this.setState({isAdmin:newRole});
+    console.log(newRole);
+  }
+
+  render() {
+    return (
+      <div className='App'>
+      <Auth
+      updateToken={this.updateToken}
+      updateRole={this.updateRole}  
+      //  <SignUp />
+      />
+      </div>
+    );
+  }
+}
+
+// export default App;
+
+
+
+// import * as React from 'react';
+// import Auth from './components/SignInUpContainer/index'; 
+// // import { SignUp } from './components/SignUpForm';
+
+// function App() {
+//   return (
+//     <Auth/> 
+//   // <SignUp/>
+//   );
+// }
+
+// export default App;
 
 // import React, { useState, useEffect } from 'react';
 // import Sitebar from './home/Navebar'; // Application - 4
