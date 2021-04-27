@@ -20,6 +20,7 @@ type UserState = {
 
 type AcceptedProps = {
   updateToken: (newToken: string) => void;
+  updateValue: (newValue: number) => void;
   // updateRole: (newUserIsAdmin: string) => void;
 };
 
@@ -47,7 +48,6 @@ export default class Login extends Component<AcceptedProps, UserState> {
             this.state.password !== ''
         ) {
             e.preventDefault();
-            // fetch("http://localhost:3000/user/login", {
             fetch(`${APIURL}/user/login`, {
                 method: 'POST',
                 headers: {
@@ -131,7 +131,7 @@ render() {
           {/* {' '} */}
           If you do not have an account?
           {/* <Link href='#' onClick={() => this.handleChange('event', 1)}> */}
-          <Link href='#' onClick={() => this.handleChange(0)}>
+          <Link href='#' onClick={() => this.props.updateValue(1)}>
             Sign Up
           </Link>
         </Typography>

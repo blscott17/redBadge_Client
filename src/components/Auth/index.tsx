@@ -51,11 +51,13 @@ export default class SignInUpContainer extends Component <AcceptedProps, UserSta
     this.state={
       username: '',
       password: '',
-      value: 0      // 0 and 1 do not seem to matter
+      value: 0      // 0 opens page on signin
       // sessionToken:"",
     }
   }
-
+  updateValue = (newValue:number) => {
+    this.setState({value:newValue})
+  }
 // const Auth = () => {
 // const SignInUpContainer = () => {
   // const [value, setValue] = useState(0);
@@ -65,9 +67,6 @@ export default class SignInUpContainer extends Component <AcceptedProps, UserSta
   };
 
    paperStyle = { width: 340, margin: '20px auto' };
-
-
- 
 
 render () {
 
@@ -85,7 +84,7 @@ render () {
         <Tab label='Sign Up' />
       </Tabs>
       <TabPanel value={this.state.value} index={0}>
-        <Login updateToken={this.props.updateToken}/>
+        <Login updateValue={this.updateValue} updateToken={this.props.updateToken}/>
       </TabPanel>
       <TabPanel value={this.state.value} index={1}>
         <Signup />
