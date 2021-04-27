@@ -8,8 +8,6 @@ import {
   Button
 } from '@material-ui/core';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 const Signup = () => {
   const paperStyle = { padding: 20, width: 300, margin: '0 auto' };
   const headerStyle = { margin: 0 };
@@ -53,9 +51,17 @@ const Signup = () => {
             label='Phone Number'
             placeholder='Enter your phone number'
           />
-          <FormControlLabel
-            control={<Checkbox name='checkedA' />}
-            label='I accept the terms and conditions.'
+          <TextField
+            fullWidth
+            label='Street Address'
+            placeholder='Enter your street address'
+          />
+          <TextField fullWidth label='City' placeholder='Enter your city' />
+          <TextField fullWidth label='State' placeholder='Enter your state' />
+          <TextField
+            fullWidth
+            label='ZipCode'
+            placeholder='Enter your zipcode'
           />
           <Button type='submit' variant='contained' color='primary'>
             Sign up
@@ -67,21 +73,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-/*
-          <FormControl component='fieldset' style={marginTop}>
-            <FormLabel component='legend'>Gender</FormLabel>
-            <RadioGroup
-              aria-label='gender'
-              name='gender'
-              style={{ display: 'initial' }}
-            >
-              <FormControlLabel
-                value='female'
-                control={<Radio />}
-                label='Female'
-              />
-              <FormControlLabel value='male' control={<Radio />} label='Male' />
-            </RadioGroup>
-          </FormControl>
-*/
