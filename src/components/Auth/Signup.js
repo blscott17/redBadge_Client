@@ -27,13 +27,13 @@ const Signup = () => {
         <form>
           <TextField
             fullWidth
-            label='User Name'
-            placeholder='Enter your username'
+            label='Email'
+            placeholder='Enter your Email Address'
           />
           <TextField
             fullWidth
             label='Password'
-            placeholder='Enter your password'
+            placeholder='Enter your Password'
           />
           <TextField
             fullWidth
@@ -45,23 +45,26 @@ const Signup = () => {
             label='Last Name'
             placeholder='Enter your Last Name'
           />
-          <TextField fullWidth label='Email' placeholder='Enter your email' />
           <TextField
             fullWidth
             label='Phone Number'
-            placeholder='Enter your phone number'
+            placeholder='Enter your Phone Number'
           />
           <TextField
             fullWidth
             label='Street Address'
-            placeholder='Enter your street address'
+            placeholder='Enter your Street address'
           />
-          <TextField fullWidth label='City' placeholder='Enter your city' />
-          <TextField fullWidth label='State' placeholder='Enter your state' />
+          <TextField fullWidth label='City' placeholder='Enter your City' />
+          <TextField
+            fullWidth
+            label='State'
+            placeholder='Enter your State Abbreviation'
+          />
           <TextField
             fullWidth
             label='ZipCode'
-            placeholder='Enter your zipcode'
+            placeholder='Enter your Zipcode'
           />
           <Button type='submit' variant='contained' color='primary'>
             Sign up

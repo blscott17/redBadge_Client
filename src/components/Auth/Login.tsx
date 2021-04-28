@@ -13,7 +13,7 @@ import {
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 type UserState = {
-    username: string;
+    email: string;
     password: string;
     value: number
 };
@@ -28,23 +28,23 @@ export default class Login extends Component<AcceptedProps, UserState> {
   constructor(props: AcceptedProps) {
       super(props);
       this.state = {
-          username: '',
+          email: '',
           password: '',
           value: 1
       };
   }
     paperStyle = {
     padding: 20,
-    height: '67vh',
+    height: '81vh',
     width: 300,
     margin: '0 auto'
   };
   avatarStyle = { backgroundColor: '#1bbd7e' };
   style = { margin: '8px 0' };
     handleSubmit = (e: any) => {
-      console.log(this.state.username, this.state.password)
+      console.log(this.state.email, this.state.password)
         if (
-            this.state.username !== '' &&
+            this.state.email !== '' &&
             this.state.password !== ''
         ) {
             e.preventDefault();
@@ -54,7 +54,7 @@ export default class Login extends Component<AcceptedProps, UserState> {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: this.state.username,
+                    email: this.state.email,
                     password: this.state.password
                 }),
                 
@@ -72,12 +72,12 @@ export default class Login extends Component<AcceptedProps, UserState> {
                 })
               .catch((err) => alert(err));  
         } else {
-            alert('username password required');
+            alert('email password required');
         }
     };
-    handleUserNameChange = (event: any) => {
-        const username = event.target.value;
-        this.setState({ username: username })
+    handleEmailChange = (event: any) => {
+        const email = event.target.value;
+        this.setState({ email: email })
     };
     handlePasswordChange = (event: any) => {
         const password = event.target.value;
@@ -93,17 +93,16 @@ render() {
   return (
     <Grid>
       <Paper style={this.paperStyle}>
-        {/* <Grid align='center'> */}
         <Grid>
-          <Avatar style={this.avatarStyle}>
+           <Avatar style={this.avatarStyle}>
             <LockOutlinedIcon />
           </Avatar>
           <h2>Sign In</h2>
         </Grid>
         <TextField
-        onChange={this.handleUserNameChange}
-          label='Username'
-          placeholder='Enter username'
+        onChange={this.handleEmailChange}
+          label='Email'
+          placeholder='Enter email'
           fullWidth
           required
         />
