@@ -41,6 +41,7 @@ export default class Login extends Component<AcceptedProps, UserState> {
   };
   avatarStyle = { backgroundColor: '#1bbd7e' };
   style = { margin: '8px 0' };
+
     handleSubmit = (e: any) => {
       console.log(this.state.email, this.state.password)
         if (
@@ -60,15 +61,16 @@ export default class Login extends Component<AcceptedProps, UserState> {
                 
             })
                 .then((res) => {
+                  console.log(res)
                     if (res.status !== 200) {
                         throw new Error('Wrong credentials or user not found');
                     } else return res.json();
                 })
                 .then((data) => {
                     console.log(data);
-                    this.props.updateToken(data.Token);
+                    this.props.updateToken(data.sessionToken);
                     // this.props.updateRole(data.user.isAdmin);
-                    console.log('User successfully logged in')
+                    console.log('Welcome to Happy Tales Mobile Pet Grooming!')
                 })
               .catch((err) => alert(err));  
         } else {

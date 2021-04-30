@@ -58,10 +58,7 @@ export default class SignInUpContainer extends Component <AcceptedProps, UserSta
   updateValue = (newValue:number) => {
     this.setState({value:newValue})
   }
-// const Auth = () => {
-// const SignInUpContainer = () => {
-  // const [value, setValue] = useState(0);
-  // const [value, setValue] = React.useState(1);
+
   handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     this.setState({value:newValue});
   };
@@ -87,27 +84,15 @@ render () {
         <Login updateValue={this.updateValue} updateToken={this.props.updateToken}/>
       </TabPanel>
       <TabPanel value={this.state.value} index={1}>
-        <Signup />
+        {/* <Signup 
+        updateToken={this.updateToken}
+        updateToken={this.updateRole}
+
+        
+        /> */}
       </TabPanel>
     </Paper>
   );
 }
 };
 
-// export default SignInUpContainer;
-// export default Auth;
-
-// const { children, value, index, ...other } = props;
-    // <div
-    //   role="tabpanel"
-    //   hidden={value !== index}
-    //   id={`simple-tabpanel-${index}`}
-    //   aria-labelledby={`simple-tab-${index}`}
-    //   {...other}
-    // >
-    //   {value === index && (
-    //     <Box>
-    //       <Typography>{children}</Typography>
-    //     </Box>
-    //   )}
-    // </div>
