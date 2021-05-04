@@ -23,8 +23,8 @@ type UserState = {
 };
 
 type AcceptedProps = {
-  updateToken: (newToken: string) => void;
-  updateValue: (newValue: number) => void;
+  updateToken: Function;
+  updateValue: Function;
   // updateRole: (newUserIsAdmin: string) => void;
 };
 
@@ -64,11 +64,11 @@ export default class Signup extends Component<AcceptedProps, UserState> {
     if (
       this.state.email !== '' &&
       this.state.password !== '' &&
-      this.state.firstname != '' &&
-      this.state.lastname != '' &&
-      this.state.city != '' &&
-      this.state.state != '' &&
-      this.state.zipcode != ''
+      this.state.firstname !== '' &&
+      this.state.lastname !== '' &&
+      this.state.city !== '' &&
+      this.state.state !== '' &&
+      this.state.zipcode !== ''
     ) {
       e.preventDefault();
       fetch(`${APIURL}/user/create`, {
@@ -115,31 +115,31 @@ export default class Signup extends Component<AcceptedProps, UserState> {
   };
   handleFirstNameChange = (event: any) => {
     const firstname = event.target.value;
-    this.setState({ password: firstname });
+    this.setState({ firstname: firstname });
   };
   handleLastNameChange = (event: any) => {
     const lastname = event.target.value;
-    this.setState({ password: lastname });
+    this.setState({ lastname: lastname });
   };
   handlePhoneNumberChange = (event: any) => {
     const phone = event.target.value;
-    this.setState({ password: phone });
+    this.setState({ phone: phone });
   };
   handleStreetAddressChange = (event: any) => {
     const street = event.target.value;
-    this.setState({ password: street });
+    this.setState({ street: street });
   };
   handleCityChange = (event: any) => {
     const city = event.target.value;
-    this.setState({ password: city });
+    this.setState({ city: city });
   };
   handleStateChange = (event: any) => {
     const state = event.target.value;
-    this.setState({ password: state });
+    this.setState({ state: state });
   };
   handleZipCodeChange = (event: any) => {
     const zipcode = event.target.value;
-    this.setState({ password: zipcode });
+    this.setState({ zipcode: zipcode });
   };
   render() {
     return (

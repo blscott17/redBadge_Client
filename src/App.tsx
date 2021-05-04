@@ -1,11 +1,15 @@
 //import * as React from 'react';
 import React, { Component } from 'react';
 import Auth from './components/Auth/index';
-import Pets from './components/Pets/PetCreate';
+import Pets from './components/PetCreate';
+import Dashboard from './components/Dashboard';
+import Navbar from './components/Navbar';
+
+
 // import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 type sessionState = {
-  sessionToken: string | null;
+  token: string;
   isAdmin: string;
   firstname: string;
 }
@@ -15,7 +19,7 @@ export default class App extends Component <{}, sessionState> {
     super(props);
 
     this.state = {
-      sessionToken: '',
+      token: '',
       isAdmin: 'false',
       firstname: ''
     };
@@ -25,15 +29,14 @@ export default class App extends Component <{}, sessionState> {
     console.log('component updated')
   }
 
-  updateToken = (newToken: string) => {
-    localStorage.setItem('token', newToken);
-    this.setState({sessionToken: newToken});
-    console.log(newToken);
+  updateToken = (token: string) => {
+    localStorage.setItem('token', token);
+    this.setState({token: token});
+    console.log(token);
   }
 
   clearToken = () => {
     localStorage.clear();
-    this.setState({sessionToken:''})
   }
 
   updateRole= (newRole: string)=> {
@@ -41,17 +44,26 @@ export default class App extends Component <{}, sessionState> {
     this.setState({isAdmin:newRole});
     console.log(newRole);
   }
+protectedViews = () => {
+return localStorage.getItem('token') ? (
+  <Navbar token={this.state.token} clickLogout={this.clearToken}/>) : (<Auth updateToken={this.updateToken} updateRole={this.updateRole}/>)
+}
 
   render() {
     return (
       <div className='App'>
-      <Auth
-      updateToken={this.updateToken}
-      updateRole={this.updateRole}  
-      //  <SignUp />
-      />
-      <Pets />
+      {this.protectedViews()}
       </div>
+      
     );
   }
 }
+
+// <div className='App'>
+// <Auth
+// updateToken={this.updateToken}
+// updateRole={this.updateRole}  
+// //  <SignUp />
+// />
+// <Pets token={this.state.token}/>
+// </div>

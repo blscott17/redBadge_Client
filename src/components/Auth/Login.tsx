@@ -19,8 +19,8 @@ type UserState = {
 };
 
 type AcceptedProps = {
-  updateToken: (newToken: string) => void;
-  updateValue: (newValue: number) => void;
+  updateToken: Function;
+  updateValue: Function;
   // updateRole: (newUserIsAdmin: string) => void;
 };
 

@@ -84,12 +84,13 @@ render () {
         <Login updateValue={this.updateValue} updateToken={this.props.updateToken}/>
       </TabPanel>
       <TabPanel value={this.state.value} index={1}>
-        {/* <Signup 
-        updateToken={this.updateToken}
-        updateToken={this.updateRole}
+        <Signup
+        updateValue={this.updateValue} 
+        updateToken={this.props.updateToken}
+          //  updateToken={this.updateRole}
 
         
-        /> */}
+        />
       </TabPanel>
     </Paper>
   );
