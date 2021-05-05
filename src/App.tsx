@@ -46,7 +46,7 @@ export default class App extends Component <{}, sessionState> {
   }
 protectedViews = () => {
 return localStorage.getItem('token') ? (
-  <Navbar token={this.state.token} clickLogout={this.clearToken}/>) : (<Auth updateToken={this.updateToken} updateRole={this.updateRole}/>)
+  <Dashboard token={this.state.token} clickLogout={this.clearToken}/>) : (<Auth updateToken={this.updateToken} updateRole={this.updateRole}/>)
 }
 
   render() {

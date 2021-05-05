@@ -95,7 +95,7 @@ export default class Signup extends Component<AcceptedProps, UserState> {
         })
         .then((data) => {
           console.log(data);
-          this.props.updateToken(data.Token);
+          this.props.updateToken(data.sessionToken);
           // this.props.updateRole(data.user.isAdmin);
           console.log('You have successfully registered with Happy Tales!');
         })
