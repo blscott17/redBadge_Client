@@ -1,7 +1,6 @@
 //import * as React from 'react';
 import React, { Component } from 'react';
 import Auth from './components/Auth/index';
-import Pets from './components/PetCreate';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
 
