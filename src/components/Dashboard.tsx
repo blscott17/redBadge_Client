@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import APIURL from'../helpers/environment'; 
 import Navbar from './Navbar'
 import PetCreate from './PetCreate';
-import PetEdit from './PetEdit';
+import PetRead from './PetRead';
 // import AppointmentCreate from './AppointmentCreate';
 
 
@@ -31,7 +31,8 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
       <Navbar token={this.props.token}
       clickLogout={this.props.clickLogout}/>
       <PetCreate token={this.props.token}/>
-      <PetEdit token={this.props.token}/>
+      {/* <PetEdit token={this.props.token}/> */}
+      <PetRead token={this.props.token}/>
     </div> );
   }
 }
