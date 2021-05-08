@@ -30,7 +30,7 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
     return ( <div>
       <Navbar token={this.props.token}
       clickLogout={this.props.clickLogout}/>
-      <PetCreate token={this.props.token}/>
+      {/* <PetCreate token={this.props.token}/> */}
       {/* <PetEdit token={this.props.token}/> */}
       <PetRead token={this.props.token}/>
     </div> );
