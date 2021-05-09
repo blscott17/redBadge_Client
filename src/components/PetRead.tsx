@@ -12,12 +12,25 @@ import {
   Card,
   CardImg,
   Alert,
+  Button,
+  Modal,
 } from 'reactstrap';
 
 export interface PetReadProps {
   token: string;
 }
- 
+
+type PetType = {
+  name : string,
+  type : string,
+  breed: string,
+  sex: string,
+  age: number|string,
+  size: string,
+  hairlength: string,
+  vaccinated: boolean|string,
+}
+
 export interface PetReadState {
   pets: any[],
   name : string,
@@ -27,7 +40,9 @@ export interface PetReadState {
   age: number|string,
   size: string,
   hairlength: string,
-  vaccinated: boolean|string
+  vaccinated: boolean|string,
+  editOn: boolean,
+  currentPet: PetType
 }
  
 class PetRead extends React.Component<PetReadProps, PetReadState> {
@@ -43,16 +58,20 @@ class PetRead extends React.Component<PetReadProps, PetReadState> {
       size: '',
       hairlength: '',
       vaccinated: false,
+      editOn: false,
+      currentPet: {
+        name : '',
+        type : '',
+        breed: '',
+        sex: '',
+        age: 0,
+        size: '',
+        hairlength: '',
+        vaccinated: false,
+      }
     };
   }
-  
-//  editPets = (pets) => {
-//    this.setState(pets);
-//  }
-//   toggleModal = () => {
-//     this.setState.
-//     this.setState(!updateActive);
-//   };
+
 
 //useEffect is more robust and can do more
 //useEffect(() => {
@@ -64,7 +83,7 @@ componentDidMount = () => {
 
 fetchPet = () => {
   let token:string | null
-  if (this.props.token == '') { 
+  if (this.props.token === '') { 
     token = localStorage.getItem('token') 
   } else {
     token = this.props.token
@@ -92,10 +111,10 @@ if (token !== null) {
 }
 };
 
-// editPet = (pet)
-// toggleModal = () => {
-//   this.setState(!updateActive);
-// }
+
+toggleModal = () => {
+  this.setState({editOn:!this.state.editOn});
+}
 
 
 
@@ -122,14 +141,6 @@ renderPets = () => {
               deletePlants(plants);
             }}>
             Kill Plant!
-          </KillEditButton>
-          <KillEditButton
-            onClick={() => {
-              // window.location.reload(true)
-              props.editPlants(plants);
-              props.toggleModal();
-            }}>
-            Add/Edit Notes
           </KillEditButton> */}
             <CardText className='AboutPet'>
             <p>Gender:     {pet.sex}</p>  
@@ -139,6 +150,14 @@ renderPets = () => {
             <p>HairLength: {pet.hairlength}</p>
             <p>Vaccinated: {pet.vaccinated} </p>            
           </CardText>
+          <Button
+            onClick={() => {
+              this.setState({currentPet:pet})
+              // props.editPlants(plants);
+              this.toggleModal();
+            }}>
+            Update Pet Info
+          </Button> 
           <br />
         </CardBody>
       </Card>
@@ -149,10 +168,15 @@ renderPets = () => {
 
 
   render() { 
-    console.log("THIS STATE", this.state.pets)
+    console.log("THIS STATE", this.state.currentPet)
+    console.log("THIS STATE EDITON", this.state.editOn) 
     return ( 
-    <div> 
-     {this.renderPets()}
+    <div>
+    <Modal isOpen={this.state.editOn} toggle={this.toggleModal}>
+      <PetEdit token={this.props.token} pet={this.state.currentPet} toggleModal={this.toggleModal}
+       />  
+    </Modal>
+    {this.renderPets()}
     </div>);
   };
 }

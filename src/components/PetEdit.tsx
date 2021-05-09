@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import './style.css';
 import APIURL from '../helpers/environment';
+import { ModalBody } from 'reactstrap'; 
 
-// export interface PetEditProps {
+type PetType = {
+  name : string,
+  type : string,
+  breed: string,
+  sex: string,
+  age: number|string,
+  size: string,
+  hairlength: string,
+  vaccinated: boolean|string,
+}
+
 type PetEditState = {
   name : string,
   type : string,
@@ -14,9 +25,10 @@ type PetEditState = {
   vaccinated: boolean|string, 
 }
  
-// export interface PetEditState {
 type PetEditProps = {
   token:string;
+  pet: PetType;
+  toggleModal: Function;
 }
  
 export default class PetEdit extends React.Component<PetEditProps, PetEditState> {
@@ -34,8 +46,9 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
     };
   }
 
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => { 
+  handleSubmit = (e: React.SyntheticEvent) => { 
     e.preventDefault()
+    this.props.toggleModal()
     let token:string | null
     if (this.props.token === '') { 
       token = localStorage.getItem('token') 
@@ -74,38 +87,10 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
 
  render() {
   return (
-    <div className='wrapper'>
+    <ModalBody className='wrapper'>
       <div className='form-wrapper'>
-        <h2>Pet Edit</h2>
+        <h2>Edit Pet Attributes</h2>
         <form onSubmit={(e) => this.handleSubmit(e)} noValidate>
-          <div className='petName'>
-            <label htmlFor='petName'>Pet Name:</label>
-            <br></br>
-            <input onChange={(e)=> this.setState({name:e.target.value})} type='text' name='petName'/>
-          </div>
-          <div className='type'>
-            <label htmlFor='type'>Pet Type:  </label>
-            <input onChange={(e) => this.setState({type:e.target.value})} type='radio' id='Dog' name='petType' value='Dog'/> 
-            <label htmlFor='petType'>Dog</label>
-            <input onChange={(e) => this.setState({type:e.target.value})} type='radio' id='Cat' name='petType' value='Cat'/> 
-            <label htmlFor='petType'>Cat</label>
-            <br></br>
-            {/* <input onChange={(e)=> this.setState({type:e.target.value})} type='text' name='type' /> */}
-          </div>
-          <div className='petBreed'>
-            <label htmlFor='petBreed'>Pet Breed:</label>
-            <br></br>
-            <input onChange={(e)=> this.setState({breed:e.target.value})} type='text' name='petBreed'/>
-          </div>
-          <div className='petGender'>
-            <label htmlFor='petGender'>Pet Gender:  </label>
-            <input onChange={(e) => this.setState({sex:e.target.value})} type='radio' id='Male' name='petGender' value='Male'/> 
-            <label htmlFor='petGender'>Male</label>
-            <input onChange={(e) => this.setState({sex:e.target.value})} type='radio' id='Female' name='petGender' value='Female'/> 
-            <label htmlFor='petGender'>Female</label>
-            {/* <br></br>
-            <input onChange={(e)=> this.setState({sex:e.target.value})} type='text' name='petSex'/> */}
-          </div>
           <div className='petAge'>
             <label htmlFor='petAge'>Pet Age:</label>
             <br></br>
@@ -113,7 +98,6 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
           </div>
           <div className='size'>
             <label htmlFor='size'>Pet Size:  </label>
-            {/* <p>How big is your pet?</p> */}
             <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-small' name='petSize' value='extra-small'/> 
             <label htmlFor='petSize'>extra-small   </label>
             <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='small' name='petSize' value='small'/> 
@@ -125,7 +109,6 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
             <label htmlFor='petSize'>large </label>
             <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-large' name='petSize' value='extra-large'/> 
             <label htmlFor='petSize'>extra-large  </label>
-            {/* <input onChange={(e)=> this.setState({size:e.target.value})} type='text' name='size' /> */}
           </div>
           <div className='hairlength'>
             <label htmlFor='hairlength'>Pet Hair Length:  </label>
@@ -139,8 +122,6 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
             <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-long' name='petHairLength' value='extra-long'/> 
             <label htmlFor='petHairLength'>extra-long  </label>
             <br></br>
-            {/* <br></br>
-            <input onChange={(e)=> this.setState({hairlength:e.target.value})}type='text' name='hairlength' /> */}
           </div>
           <div className='vaccinated'>
             <label htmlFor='vaccinated'>Is Pet Vaccinated?  </label>
@@ -151,12 +132,14 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
           </div>
           <p>Pet MUST be vaccinated to receive service!</p>
           <div className='submit'>
-            <button>Edit</button>
+            <button type='submit'>Edit</button>
           </div>
         </form>
+        <div className='cancel'>
+            <button onClick={() => this.props.toggleModal()}>Cancel</button>
+          </div>
       </div>
-    </div>
-
+    </ModalBody>
   );
 };
 }
