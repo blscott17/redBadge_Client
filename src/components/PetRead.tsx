@@ -139,7 +139,7 @@ renderPets = () => {
             {pet.scientific_name}
           </CardSubtitle> */}
           <hr />
-
+<PetDelete pet={pet.id} token={this.props.token} fetchPet={this.fetchPet}/>  
           {/* <KillEditButton
             primary
             onClick={() => {
