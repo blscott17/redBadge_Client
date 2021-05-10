@@ -21,6 +21,7 @@ export interface PetReadProps {
 }
 
 type PetType = {
+  id: number,
   name : string,
   type : string,
   breed: string,
@@ -28,12 +29,13 @@ type PetType = {
   age: number|string,
   size: string,
   hairlength: string,
-  vaccinated: boolean|string,
+  vaccinated: boolean|string,  
 }
 
 export interface PetReadState {
   pets: any[],
   name : string,
+  id: number,
   type : string,
   breed: string,
   sex: string,
@@ -50,6 +52,7 @@ class PetRead extends React.Component<PetReadProps, PetReadState> {
     super(props);
     this.state = {
       pets: [],
+      id: 0,
       name : '',
       type : '',
       breed: '',
@@ -60,6 +63,7 @@ class PetRead extends React.Component<PetReadProps, PetReadState> {
       vaccinated: false,
       editOn: false,
       currentPet: {
+        id: 0,
         name : '',
         type : '',
         breed: '',
@@ -115,6 +119,7 @@ if (token !== null) {
 toggleModal = () => {
   this.setState({editOn:!this.state.editOn});
 }
+// this.setState({editOn:!this.state.editOn});
 
 
 
@@ -148,7 +153,7 @@ renderPets = () => {
             <p>Age:        {pet.age}</p>
             <p>Size:       {pet.size}</p>
             <p>HairLength: {pet.hairlength}</p>
-            <p>Vaccinated: {pet.vaccinated} </p>            
+            {/* <p>Vaccinated: {pet.vaccinated} </p>             */}
           </CardText>
           <Button
             onClick={() => {
@@ -168,8 +173,8 @@ renderPets = () => {
 
 
   render() { 
-    console.log("THIS STATE", this.state.currentPet)
-    console.log("THIS STATE EDITON", this.state.editOn) 
+    console.log("THIS PET STATE", this.state.currentPet)
+    console.log("THIS STATE editOn", this.state.editOn) 
     return ( 
     <div>
     <Modal isOpen={this.state.editOn} toggle={this.toggleModal}>

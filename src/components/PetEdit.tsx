@@ -4,6 +4,7 @@ import APIURL from '../helpers/environment';
 import { ModalBody } from 'reactstrap'; 
 
 type PetType = {
+  id: number,
   name : string,
   type : string,
   breed: string,
@@ -15,6 +16,7 @@ type PetType = {
 }
 
 type PetEditState = {
+  id: number,
   name : string,
   type : string,
   breed: string,
@@ -35,14 +37,15 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
   constructor(props: PetEditProps) {
     super(props);
     this.state = {
-      name : '',
-      type : '',
-      breed: '',
-      sex: '',
-      age: 0,
-      size: '',
-      hairlength: '',
-      vaccinated: false,
+      id: this.props.pet.id,
+      name : this.props.pet.name,
+      type : this.props.pet.type,
+      breed: this.props.pet.breed,
+      sex: this.props.pet.sex,
+      age: this.props.pet.age,
+      size: this.props.pet.size,
+      hairlength: this.props.pet.hairlength,
+      vaccinated: this.props.pet.vaccinated,
     };
   }
 
@@ -60,7 +63,8 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
  //for this.props.token
  console.log("Pet Edit", token)
  if (token !== null) {
-   fetch(`${APIURL}/pet/update/:id`, {
+   console.log("state id", this.props.pet.id)
+   fetch(`${APIURL}/pet/update/${this.props.pet.id}`, {
      method: 'PUT',
      headers: {
        'Content-Type': 'application/json', 
@@ -79,7 +83,7 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
    })
    .then((res) => res.json())
    .then((logData) => {
-     console.log(logData);
+     console.log("LOG PET DATA", logData);
      alert('Pet successfully edited!');
    });
  }
@@ -91,41 +95,44 @@ export default class PetEdit extends React.Component<PetEditProps, PetEditState>
       <div className='form-wrapper'>
         <h2>Edit Pet Attributes</h2>
         <form onSubmit={(e) => this.handleSubmit(e)} noValidate>
-          <div className='petAge'>
-            <label htmlFor='petAge'>Pet Age:</label>
+          <div className='age'>
+            <label htmlFor='age'>Pet Age:</label>
             <br></br>
-            <input onChange={(e: React.FormEvent<HTMLInputElement>) => this.setState({age:e.currentTarget.value})} type='number' name='petAge'/>
+            <input onChange={(e: React.FormEvent<HTMLInputElement>) => this.setState({age:e.currentTarget.value})} type='number' name='age'/>
           </div>
           <div className='size'>
             <label htmlFor='size'>Pet Size:  </label>
-            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-small' name='petSize' value='extra-small'/> 
-            <label htmlFor='petSize'>extra-small   </label>
-            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='small' name='petSize' value='small'/> 
-            <label htmlFor='petSize'>small   </label>
+            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-small' name='size' value='extra-small'/> 
+            <label htmlFor='size'>extra-small   </label>
+            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='small' name='size' value='small'/> 
+            <label htmlFor='size'>small   </label>
             <input onChange={(e) => this.setState({size:e.target.value})} type='radio'
-            id='medium' name='petSize' value='medium'/> 
-            <label htmlFor='petSize'>medium   </label>
-            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='large' name='petSize' value='large'/> 
-            <label htmlFor='petSize'>large </label>
-            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-large' name='petSize' value='extra-large'/> 
-            <label htmlFor='petSize'>extra-large  </label>
+            id='medium' name='size' value='medium'/> 
+            <label htmlFor='size'>medium   </label>
+            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='large' name='size' value='large'/> 
+            <label htmlFor='size'>large </label>
+            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-large' name='size' value='extra-large'/> 
+            <label htmlFor='size'>large </label>
+            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-large' name='size' value='extra-large'/> 
+            <label htmlFor='size'>extra-large  </label>
           </div>
           <div className='hairlength'>
             <label htmlFor='hairlength'>Pet Hair Length:  </label>
-            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='short' name='petHairLength' value='short'/> 
-            <label htmlFor='petHairLength'>short  </label>
+            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='short' name='hairlength' value='short'/> 
+            <label htmlFor='hairlength'>short  </label>
             <input onChange={(e) => this.setState({size:e.target.value})} type='radio'
-            id='medium' name='petHairLength' value='medium'/> 
-            <label htmlFor='petHairLength'>medium  </label>
-            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='long' name='petHairLength' value='long'/> 
-            <label htmlFor='petHairLength'>long  </label>
-            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-long' name='petHairLength' value='extra-long'/> 
-            <label htmlFor='petHairLength'>extra-long  </label>
+            id='medium' name='hairlength' value='medium'/> 
+            <label htmlFor='hairlength'>medium  </label>
+            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='long' name='hairlength' value='long'/> 
+            <label htmlFor='hairlength'>long  </label>
+            <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-long' name='hairlength' value='extra-long'/> 
+            <label htmlFor='hairlength'>extra-long  </label>
             <br></br>
           </div>
           <div className='vaccinated'>
             <label htmlFor='vaccinated'>Is Pet Vaccinated?  </label>
-            <input onChange={(e) => this.setState({vaccinated:e.target.value})} type='radio' id='false' name='vaccinated' value='false' defaultChecked/> 
+            <input onChange={(e) => this.setState({vaccinated:e.target.value})} type='radio' id='false' 
+            name='vaccinated' value='false'/> 
             <label htmlFor='vaccinated'>No   </label>
             <input onChange={(e) => this.setState({vaccinated:e.target.value})} type='radio' id='true' name='vaccinated' value='true'/> 
             <label htmlFor='vaccinated'>Yes</label>

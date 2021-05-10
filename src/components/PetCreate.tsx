@@ -125,7 +125,6 @@ if (token !== null) {
               <label htmlFor='petSize'>large </label>
               <input onChange={(e) => this.setState({size:e.target.value})} type='radio' id='extra-large' name='petSize' value='extra-large'/> 
               <label htmlFor='petSize'>extra-large  </label>
-              {/* <input onChange={(e)=> this.setState({size:e.target.value})} type='text' name='size' /> */}
             </div>
             <div className='hairlength'>
               <label htmlFor='hairlength'>Pet Hair Length:  </label>
