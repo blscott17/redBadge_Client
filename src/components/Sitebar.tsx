@@ -13,7 +13,7 @@ import {
   DropdownItem,
   NavbarText
 } from 'reactstrap';
-// import { Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 export interface SitebarProps {
   token: string;
