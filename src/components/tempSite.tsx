@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import AdminView from './AdminView';
 import Sitebar from './Sitebar';
+// import { StringLiteralLike } from 'typescript';
+// import APIURL from'../helpers/environment';
 // import Navbar from './Navbar';
 import PetCreate from './PetCreate';
 import PetRead from './PetRead';
@@ -23,14 +25,12 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
   render() {
     return (
       <div>
+        {/* <Navbar token={this.props.token} clickLogout={this.props.clickLogout} /> */}
         <Sitebar
           token={this.props.token}
           clickLogout={this.props.clickLogout}
         />
-        {/* In here do a turnary if you are an Normal Person show this view 
-        
-        !this.props.isAdmin ? show your container : null
-        */}
+        {/* !this.props.isAdmin ? show your container : null */}
         {localStorage.getItem('role') === 'Customer' ? (
           <Container>
             <Row>
@@ -43,14 +43,9 @@ class Dashboard extends React.Component<DashboardProps, DashboardState> {
             </Row>
           </Container>
         ) : null}
+        {/* this.props.isAdmin ? show admin view : null */}
         {localStorage.getItem('role') === 'Admin' ? (
           <Container>
-            {/* Show This : null*/}
-
-            {/* In here do a turnary if you are an Admin show this view 
-          
-          this.props.isAdmin ? show admin view : null
-          */}
             <AdminView token={this.props.token} />
           </Container>
         ) : null}
