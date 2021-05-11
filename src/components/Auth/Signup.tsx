@@ -25,7 +25,7 @@ type UserState = {
 type AcceptedProps = {
   updateToken: Function;
   updateValue: Function;
-  // updateRole: (newUserIsAdmin: string) => void;
+  updateRole: Function;
 };
 
 export default class Signup extends Component<AcceptedProps, UserState> {
@@ -96,7 +96,7 @@ export default class Signup extends Component<AcceptedProps, UserState> {
         .then((data) => {
           console.log(data);
           this.props.updateToken(data.sessionToken);
-          // this.props.updateRole(data.user.isAdmin);
+          this.props.updateRole(data.user.isAdmin);
           console.log('You have successfully registered with Happy Tales!');
         })
         .catch((err) => alert(err));

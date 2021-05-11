@@ -14,21 +14,21 @@ interface TabPanelProps {
 }
 
 type UserState = {
-  username: string,
-  password: string,
-  value: number
-}
-type AcceptedProps={
+  username: string;
+  password: string;
+  value: number;
+};
+type AcceptedProps = {
   updateToken: (newToken: string) => void;
-  updateRole : (newRole: string) => void;
-}
+  updateRole: (newRole: string) => void;
+};
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -43,56 +43,59 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-
 // export default class SignInUpContainer extends Component <AcceptedProps, {}> {
-export default class SignInUpContainer extends Component <AcceptedProps, UserState> {
-  constructor (props: AcceptedProps) {
-    super(props)
-    this.state={
+export default class SignInUpContainer extends Component<
+  AcceptedProps,
+  UserState
+> {
+  constructor(props: AcceptedProps) {
+    super(props);
+    this.state = {
       username: '',
       password: '',
-      value: 0      // 0 opens page on signin
+      value: 0 // 0 opens page on signin
       // sessionToken:"",
-    }
+    };
   }
-  updateValue = (newValue:number) => {
-    this.setState({value:newValue})
-  }
-
-  handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    this.setState({value:newValue});
+  updateValue = (newValue: number) => {
+    this.setState({ value: newValue });
   };
 
-   paperStyle = { width: 340, margin: '20px auto' };
+  handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    this.setState({ value: newValue });
+  };
 
-render () {
+  paperStyle = { width: 340, margin: '20px auto' };
 
-  return (
-    <Paper elevation={20} style={this.paperStyle}>
-      <Tabs
-        value={this.state.value}
-        indicatorColor='primary'
-        textColor='primary'
-        onChange={this.handleChange}
-        aria-label='disabled tabs example'
+  render() {
+    return (
+      <Paper elevation={20} style={this.paperStyle}>
+        <Tabs
+          value={this.state.value}
+          indicatorColor='primary'
+          textColor='primary'
+          onChange={this.handleChange}
+          aria-label='disabled tabs example'
         >
-        <Tab label='Sign In' />
+          <Tab label='Sign In' />
 
-        <Tab label='Sign Up' />
-      </Tabs>
-      <TabPanel value={this.state.value} index={0}>
-        <Login updateValue={this.updateValue} updateToken={this.props.updateToken}/>
-      </TabPanel>
-      <TabPanel value={this.state.value} index={1}>
-        <Signup
-        updateValue={this.updateValue} 
-        updateToken={this.props.updateToken}
-          //  updateToken={this.updateRole}
-      
-        />
-      </TabPanel>
-    </Paper>
-  );
+          <Tab label='Sign Up' />
+        </Tabs>
+        <TabPanel value={this.state.value} index={0}>
+          <Login
+            updateValue={this.updateValue}
+            updateToken={this.props.updateToken}
+            updateRole={this.props.updateRole}
+          />
+        </TabPanel>
+        <TabPanel value={this.state.value} index={1}>
+          <Signup
+            updateValue={this.updateValue}
+            updateToken={this.props.updateToken}
+            updateRole={this.props.updateRole}
+          />
+        </TabPanel>
+      </Paper>
+    );
+  }
 }
-};
-

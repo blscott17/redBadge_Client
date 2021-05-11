@@ -50,6 +50,8 @@ export default class App extends Component<{}, sessionState> {
     );
   };
 
+  // <Navbar clickLogout={this.clearToken} />
+
   render() {
     return <div className='App'>{this.protectedViews()}</div>;
   }
