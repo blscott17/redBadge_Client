@@ -1,18 +1,40 @@
 import React, { Component } from 'react';
 import './style.css';
 import APIURL from '../helpers/environment';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { NotesSharp } from '@material-ui/icons';
+import { ModalBody, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-type AppointmentCreateProps = {
-  token: string;
-  pet: number;
-  petName: string;
+type PetType = {
+  id: number;
+  name: string;
+  type: string;
+  breed: string;
+  sex: string;
+  age: number | string;
+  size: string;
+  hairlength: string;
+  vaccinated: boolean | string;
 };
 
 type AppointmentCreateState = {
+  id: number;
+  name: string;
+  type: string;
+  breed: string;
+  sex: string;
+  age: number | string;
+  size: string;
+  hairlength: string;
+  vaccinated: boolean | string;
   datetime: string;
   note: string;
+};
+
+type AppointmentCreateProps = {
+  token: string;
+  // pet: number;
+  pet: PetType;
+  // petName: string;
+  toggleModal: Function;
 };
 
 export default class AppointmentCreate extends React.Component<
@@ -22,6 +44,15 @@ export default class AppointmentCreate extends React.Component<
   constructor(props: AppointmentCreateProps) {
     super(props);
     this.state = {
+      id: this.props.pet.id,
+      name: this.props.pet.name,
+      type: this.props.pet.type,
+      breed: this.props.pet.breed,
+      sex: this.props.pet.sex,
+      age: this.props.pet.age,
+      size: this.props.pet.size,
+      hairlength: this.props.pet.hairlength,
+      vaccinated: this.props.pet.vaccinated,
       datetime: '',
       note: ''
     };
@@ -42,7 +73,7 @@ export default class AppointmentCreate extends React.Component<
     console.log('Appointment Edit', token);
     if (token !== null) {
       console.log('datetime and note', this.state.datetime, this.state.note);
-      fetch(`${APIURL}/appointment/create/${this.props.pet}`, {
+      fetch(`${APIURL}/appointment/create/${this.props.pet.id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,32 +94,35 @@ export default class AppointmentCreate extends React.Component<
 
   render() {
     return (
-      <>
-        <h3>Create an Appointment</h3>
-        <Form onSubmit={(e) => this.handleSubmit(e)} noValidate>
-          <FormGroup>
-            <Label htmlFor='grooming'>Booking Date Time</Label>
-            <Input
-              onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                this.setState({ datetime: e.currentTarget.value })
-              }
-              id='grooming'
-              type='datetime-local'
-              name='groomingdate'
-            ></Input>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor='note'>Notes About Appointment</Label>
-            <Input
-              onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                this.setState({ note: e.currentTarget.value })
-              }
-            />
-          </FormGroup>
-          <Button type='submit'>Create</Button>
-        </Form>
-      </>
-      // <div></div>
+      // <>
+      <ModalBody className='wrapper'>
+        <div className='form-wrapper'>
+          <h3>Create an Appointment</h3>
+          <Form onSubmit={(e) => this.handleSubmit(e)} noValidate>
+            <FormGroup>
+              <Label htmlFor='grooming'>Booking Date Time</Label>
+              <Input
+                onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                  this.setState({ datetime: e.currentTarget.value })
+                }
+                id='grooming'
+                type='datetime-local'
+                name='groomingdate'
+              ></Input>
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor='note'>Notes About Appointment</Label>
+              <Input
+                onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                  this.setState({ note: e.currentTarget.value })
+                }
+              />
+            </FormGroup>
+            <Button type='submit'>Create</Button>
+          </Form>
+        </div>
+      </ModalBody>
+      // </>
     );
   }
 }

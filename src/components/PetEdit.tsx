@@ -100,7 +100,7 @@ export default class PetEdit extends React.Component<
           {/* <h2>Edit {this.props.petName} Attributes</h2> */}
           <h2>Update Pet Attributes</h2>
           <form onSubmit={(e) => this.handleSubmit(e)} noValidate>
-            <div className='name'>
+            {/* <div className='name'>
               <label htmlFor='name'>Pet Name:</label>
               <br></br>
               <input
@@ -110,7 +110,7 @@ export default class PetEdit extends React.Component<
                 type='string'
                 name='name'
               />
-            </div>
+            </div> */}
 
             <div className='age'>
               <label htmlFor='age'>Pet Age:</label>
