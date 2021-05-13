@@ -10,15 +10,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = createStyles({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
-  },
+    marginRight: 20
+  }
 });
 
 export interface Props extends WithStyles<typeof styles> {}
@@ -27,15 +27,19 @@ function Navbar(props: Props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position='static'>
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton
+            className={classes.menuButton}
+            color='inherit'
+            aria-label='Menu'
+          >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography variant='h6' color='inherit' className={classes.grow}>
             News
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button color='inherit'>Logout</Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -43,9 +47,7 @@ function Navbar(props: Props) {
 }
 
 Navbar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 } as any;
 
 export default withStyles(styles)(Navbar);
-
-//ButtonAppBar replaced by Navbar

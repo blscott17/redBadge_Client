@@ -60,7 +60,7 @@ class AdminView extends React.Component<AdminViewProps, AdminViewState> {
 
   displayTable = () => {
     let appointmentArray = [];
-    console.log(this.state.pets.filter((pet) => pet.id == 4)[0].name);
+    // console.log(this.state.pets.filter((pet) => pet.id == 4)[0].name);
     return this.state.appointments.map(
       (data: IReadAllResponse, apptIndex: number) =>
         data.appointments.map((appointment, index) => (
@@ -70,12 +70,28 @@ class AdminView extends React.Component<AdminViewProps, AdminViewState> {
               {appointment.datetime.split('T')[0]}{' '}
               {appointment.datetime.split('T')[1].slice(0, 5)}
             </td>
+            <td>{appointment.note}</td>
             <td>
               {data.firstname} {data.lastname}
             </td>
             <td>
+              {/* <td>{renderPetName()}</td> */}
+              {/* try filter to find the pet I want */}
+              {
+                this.state.pets.filter((pet) => appointment.petId == pet.id)[0]
+                  .name
+              }
+              {/* {data.pets.map((pet, index) => (
+                <>
+                  <th scope='row'>{index + 1}</th>
+                  <td>{pet.name}</td>
+                </>
+              ))} */}
+            </td>
+
+            <td>
               <Button
-                danger
+                color='danger'
                 onClick={() => this.handleDelete(appointment.petId)}
               >
                 Delete
@@ -95,7 +111,9 @@ class AdminView extends React.Component<AdminViewProps, AdminViewState> {
             <tr>
               <th>#</th>
               <th>Appointment Date-Time</th>
+              <th>Appointment Note</th>
               <th>Pet Owner</th>
+              <th>Pet Name</th>
               <th>Action</th>
             </tr>
           </thead>

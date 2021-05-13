@@ -113,8 +113,8 @@ class PetRead extends React.Component<PetReadProps, PetReadState> {
         .then((res) => res.json())
         .then((petData) => {
           this.setState({ pets: petData });
-          console.log(petData);
-          alert('Pet read/get successful!');
+          // console.log(petData);
+          // alert('Pet read/get successful!');
         });
     }
   };
@@ -172,13 +172,23 @@ class PetRead extends React.Component<PetReadProps, PetReadState> {
             />
             <br />
           </CardBody>
-          <AppointmentCreate
+          <Button
+            style={{ backgroundColor: 'lightblue', marginTop: '10px' }}
+            onClick={() => {
+              this.setState({ currentPet: pet });
+              // props.editPlants(plants);
+              this.toggleModal();
+            }}
+          >
+            Book Appointment
+          </Button>
+          {/* <AppointmentCreate
             petName={pet.name}
             pet={pet.id}
             token={this.props.token}
           />
-          {/* <AppointmentEdit pet={pet.id} token={this.props.token}/> */}
-          <AppointmentDelete pet={pet.id} token={this.props.token} />
+          {/* <AppointmentEdit pet={pet.id} token={this.props.token}/>
+          <AppointmentDelete pet={pet.id} token={this.props.token} /> */}{' '}
         </Card>
       );
     });
@@ -194,6 +204,16 @@ class PetRead extends React.Component<PetReadProps, PetReadState> {
             // pet={pet.id}
             token={this.props.token}
             pet={this.state.currentPet}
+            // petName={this.props.}
+            toggleModal={this.toggleModal}
+          />
+        </Modal>
+        <Modal isOpen={this.state.editOn} toggle={this.toggleModal}>
+          <AppointmentCreate
+            // pet={pet.id}
+            token={this.props.token}
+            pet={this.state.currentPet}
+            // pet={this.props.id}
             // petName={this.props.}
             toggleModal={this.toggleModal}
           />
