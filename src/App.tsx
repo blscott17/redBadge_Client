@@ -35,6 +35,7 @@ export default class App extends Component<{}, sessionState> {
 
   clearToken = () => {
     localStorage.clear();
+    window.location.reload(true);
   };
   // Make sure you pass the update Role down to the login
   updateRole = (newRole: string) => {

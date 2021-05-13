@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Collapse,
+  Button,
   Navbar,
   NavbarToggler,
   NavbarBrand,
@@ -19,24 +20,26 @@ export interface SitebarProps {
   clickLogout: Function;
 }
 
-const Sitebar: React.SFC<SitebarProps> = () => {
+const Sitebar: React.SFC<SitebarProps> = (props) => {
   return (
     <div>
       <Navbar style={{ backgroundColor: 'grey' }}>
-        <NavbarBrand href='/'>reactstrap</NavbarBrand>
-        <Collapse navbar>
-          <Nav className='mr-auto' navbar>
-            <NavItem>
-              <NavLink href='/components/'>Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href='https://github.com/reactstrap/reactstrap'>
-                GitHub
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <NavbarText>Simple Text</NavbarText>
-        </Collapse>
+        <NavbarBrand style={{ color: 'white' }} href='/'>
+          Happy Tales Mobile Grooming
+        </NavbarBrand>
+        <Nav className='mr-auto' navbar>
+          {/* <NavItem>
+            <NavLink href='/components/'>Components</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href='https://github.com/reactstrap/reactstrap'>
+              GitHub
+            </NavLink>
+          </NavItem> */}
+        </Nav>
+        <NavbarText>
+          <Button onClick={() => props.clickLogout()}>Logout</Button>
+        </NavbarText>
       </Navbar>
     </div>
   );

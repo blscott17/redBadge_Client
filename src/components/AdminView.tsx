@@ -77,7 +77,10 @@ class AdminView extends React.Component<AdminViewProps, AdminViewState> {
             <td>
               {/* <td>{renderPetName()}</td> */}
               {/* try filter to find the pet I want */}
-              {this.state.pets.filter((pet) => pet.id == pet.id)[0].name}
+              {
+                this.state.pets.filter((pet) => appointment.petId == pet.id)[0]
+                  .name
+              }
               {/* {data.pets.map((pet, index) => (
                 <>
                   <th scope='row'>{index + 1}</th>
